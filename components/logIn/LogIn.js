@@ -1,13 +1,16 @@
 
 
- import React, {useState} from 'react';
+ import React, {useState, useContext} from 'react';
 
  import { NavigationContainer } from '@react-navigation/native';
+ import auth from '@react-native-firebase/auth';
  import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+ import {authContext} from "../Firebase/AuthProvider";
  import {
    
    StyleSheet,
-   Text,
+   Text,  
    useColorScheme,
    View,
    TextInput,
@@ -27,19 +30,21 @@
 const LogIn = ({navigation}) =>{
   const [userName, setUserName] = useState(null);
   const [userPass, setUserPass] = useState(null);
+//ENVOLVER EL APP EN EL PROVIDER
+  const {login} = useContext(authContext);
 
-  const checkData = () => {
-    if(userName != 'aj502gm' || userPass != 'holamundo'){
-      Alert.alert("Usuario o contraseña incorrecta", "Revise sus datos");
+  const checkData = () =>{
+    if(userName != 'aj502gm' || userPass != "holamundo"){
+      Alert.alert("Error", "Datos incorrectos");
       return;
-    };
+    }
     navigation.navigate("MainMenu");
   }
   return (
     <View style = {styles.container}>
         <TextInput  placeholderTextColor={'#0ebeff'} style = {styles.input} value = {userName} onChangeText = {(e) => setUserName(e)} placeholder={'Hello Folk'} />
         <TextInput  placeholderTextColor={'#0ebeff'} style = {styles.input} value = {userPass} onChangeText = {(e) => setUserPass(e)} placeholder={'Is that really you?'} />
-        <Button title = {"Let's go!"} style = {styles.inputButton} onPress = {() => checkData() }/>
+        <Button title = {"Let's go!"} style = {styles.inputButton} onPress = {() => login(userName,userPass) }/>
     </View>
   );
 }
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
       borderTopColor: "#0ebeff",
       marginBottom: 10,
       color: "white",
-      placeholderTextColor:"#0ebeff",
+      
     },
   });
 
