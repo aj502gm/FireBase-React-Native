@@ -28,8 +28,8 @@
  
  
 const LogIn = ({navigation}) =>{
-  const [userName, setUserName] = useState(null);
-  const [userPass, setUserPass] = useState(null);
+  const [userName, setUserName] = useState("");
+  const [userPass, setUserPass] = useState("");
 //ENVOLVER EL APP EN EL PROVIDER
   const {login} = useContext(authContext);
 
@@ -44,7 +44,7 @@ const LogIn = ({navigation}) =>{
     <View style = {styles.container}>
         <TextInput  placeholderTextColor={'#0ebeff'} style = {styles.input} value = {userName} onChangeText = {(e) => setUserName(e)} placeholder={'Hello Folk'} />
         <TextInput  placeholderTextColor={'#0ebeff'} style = {styles.input} value = {userPass} onChangeText = {(e) => setUserPass(e)} placeholder={'Is that really you?'} />
-        <Button title = {"Let's go!"} style = {styles.inputButton} onPress = {() => login(userName,userPass) }/>
+        <Button title = {"Let's go!"} style = {styles.inputButton} onPress = {() => {if(login(userName,userPass)) navigation.navigate("MainMenu")} }/>
     </View>
   );
 }
