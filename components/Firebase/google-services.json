@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "602313449349",
+    "project_id": "reactnative-project-ca8d1",
+    "storage_bucket": "reactnative-project-ca8d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602313449349:android:84e0646c2e8213d615aeec",
+        "android_client_info": {
+          "package_name": "com.hellowold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602313449349-m7h2si1m2r1qvj332mtq69ke6l21l060.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP2ywpMdkvEfsy-frA5Z-QX1MBah8XqcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602313449349-m7h2si1m2r1qvj332mtq69ke6l21l060.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

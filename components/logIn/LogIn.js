@@ -28,8 +28,8 @@
  
  
 const LogIn = ({navigation}) =>{
-  const [userName, setUserName] = useState("");
-  const [userPass, setUserPass] = useState("");
+  const [userName, setUserName] = useState("androsogt@gmail.com");
+  const [userPass, setUserPass] = useState("holamundo");
 //ENVOLVER EL APP EN EL PROVIDER
   const {login} = useContext(authContext);
 

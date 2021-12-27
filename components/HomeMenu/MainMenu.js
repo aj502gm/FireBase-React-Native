@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Cards from "./Cards";
+import firestore from '@react-native-firebase/firestore';
+import { Col, Row, Grid } from "react-native-easy-grid";
 import {
     ScrollView,
     StyleSheet,
@@ -22,22 +24,45 @@ import {
   
 
 function MainMenu() {
-    const state = {
-        yellow: '#fcd000',
-			blue: '#0ebeff',
-			green: '#47cf73',
-			purple: '#ae63e4'
-    }
+    const [dataProduct, setDataProducts] = useState([]);
+    let dataProductTemp = [];
+    useEffect(()=>{
+      try{
+        async function fetchData(){
+          try{
+              const products = await firestore().collection('Products').get();
+              products.forEach(value => dataProductTemp.push(value));
+              setDataProducts(dataProductTemp);
+          }catch(e){
+            console.log(e);
+          }
+         
+        }
+        fetchData();
+        
+      }catch(e){
+        console.log(e);
+      }  
+    },[]);
+    useEffect(()=>{
+      console.log("DATA:")
+      console.log(dataProduct);
+    },[dataProduct])
     return (
-       <ScrollView style = {styles.container}>
-           	<Cards title="Title One" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus officiis neque, eveniet ab, autem dolore saepe voluptate praesentium sapiente debitis, facere assumenda optio hic! Recusandae, libero. Laudantium ipsum cumque dolores!"/>
-            <Cards title="Title One" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus officiis neque, eveniet ab, autem dolore saepe voluptate praesentium sapiente debitis, facere assumenda optio hic! Recusandae, libero. Laudantium ipsum cumque dolores!"/>
-            <Cards title="Title One" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus officiis neque, eveniet ab, autem dolore saepe voluptate praesentium sapiente debitis, facere assumenda optio hic! Recusandae, libero. Laudantium ipsum cumque dolores!"/>
-            <Cards title="Title One" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus officiis neque, eveniet ab, autem dolore saepe voluptate praesentium sapiente debitis, facere assumenda optio hic! Recusandae, libero. Laudantium ipsum cumque dolores!"/>
-            <Cards title="Title One" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus officiis neque, eveniet ab, autem dolore saepe voluptate praesentium sapiente debitis, facere assumenda optio hic! Recusandae, libero. Laudantium ipsum cumque dolores!"/>
-            <Cards title="Title One" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus officiis neque, eveniet ab, autem dolore saepe voluptate praesentium sapiente debitis, facere assumenda optio hic! Recusandae, libero. Laudantium ipsum cumque dolores!"/>
-
-       </ScrollView>
+      <Grid>
+        <Col style = {styles.back} size = {3}>
+          <ScrollView>
+            {
+              dataProduct?.map((value,index) =>{
+                if(index){
+                  return <Row><Cards id_product = {value.data().id_product} product_name = {value.data().product_name} price = {value.data().price}></Cards></Row>
+                }
+              })
+            }
+          </ScrollView>
+        </Col>
+        
+      </Grid>
     )
 }
 const styles = StyleSheet.create({
@@ -45,9 +70,7 @@ const styles = StyleSheet.create({
         height: 1200,
         backgroundColor: '#111',
         width: 500,
-        flexDirection: "column",
         
-        flexWrap: 'wrap',
     },
     input: {
       width: 200,
@@ -57,6 +80,9 @@ const styles = StyleSheet.create({
       borderColor: 'black',
       marginBottom: 10,
     },
+    back:{
+      backgroundColor: '#111',
+    }
   });
 
 

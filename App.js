@@ -13,6 +13,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LogIn from './components/logIn/LogIn';
 import MainMenu from './components/HomeMenu/MainMenu';
 import {AuthProvider} from "./components/Firebase/AuthProvider";
+import firestore from '@react-native-firebase/firestore';
+
+const data = require('./mockData/MOCK_DATA.json'); // BACK
+
+
 import {
   SafeAreaView,
   ScrollView,
@@ -25,6 +30,7 @@ import {
   Button,
   Alert
 } from 'react-native';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -43,7 +49,18 @@ const App=  () => {
     </AuthProvider>
   ); 
 };
+// const addData = async () => {
+//   try{
+//     data.forEach(product => {
+//       firestore().collection('Products').add(product);
+//     });
+//     console.log(data);
+//   }catch(e){
+//     console.log(e);
+//   }
+// }
 
+// addData();
 //<Stack.Screen name="MainMenu" component={MainMenu}  options={{ title: 'Home' }}/>
         //PANTALLA DE DETALLES PARA LOS PRODUCTOS PENDIENTES DE AGREGAR
 
