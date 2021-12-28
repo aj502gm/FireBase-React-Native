@@ -22,19 +22,21 @@ import { withOrientation } from 'react-navigation';
 
   
 
-function Cards({id_product, product_name, price}) {
+function Cards({id_product, product_name, price, description}) {
     const [modalVisible, setModalVisible] = useState(false);
     return (
-        <View style = {styles.card}>
-          <Text style = {styles.fonts}>{id_product}</Text>
+        <View style = {[styles.card]}>
+          <Text style = {styles.fonts}>#{id_product}</Text>
           <View style = {styles.line} ></View>
           <Text style = {styles.fonts}>{product_name}</Text>
             
 
-          <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => setModalVisible(true)}>
+          <Modal style = {styles.centeredView} animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => setModalVisible(true)} product_name = {product_name} price = {price} description = {description}>
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text style={styles.modalText}>Hello World!</Text>
+                <Text style={styles.modalText}>{product_name}</Text>
+                <Text style={styles.modalText}>Q{price}</Text>
+                <Text style={styles.modalText}>{description}</Text>
                 <Button title = {'Close Modal'} style={[styles.button, styles.buttonClose]} onPress={() => setModalVisible(!modalVisible)}>
                   <Text style={styles.textStyle}>Hide Modal</Text>
                 </Button>
@@ -72,6 +74,12 @@ const styles = StyleSheet.create({
 			justifyContent: "center",
 			color: "white",
       minHeight: 35,
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22
     },
     modalView: {
       margin: 20,

@@ -55,7 +55,7 @@ function MainMenu() {
             {
               dataProduct?.map((value,index) =>{
                 if(index % 2 ===  0){
-                  return <Row style = {styles.card_row}  ><Cards key = {value.data().id_product + value.data().product_name} id_product = {index+1} product_name = {value.data().product_name} price = {value.data().price}></Cards></Row>
+                  return <Row style = {styles.card_row}  ><Cards key = {value.data().id_product + value.data().product_name} id_product = {index+1} product_name = {value.data().product_name} price = {value.data().price} description = {value.data().description}></Cards></Row>
                 }
               })
             }
@@ -66,7 +66,7 @@ function MainMenu() {
             {
               dataProduct?.map((value,index) =>{
                 if(index % 2 != 0){
-                  return <Row style = {styles.card_row} ><Cards key = {value.data().id_product + value.data().product_name} id_product = {index+1} product_name = {value.data().product_name} price = {value.data().price}></Cards></Row>
+                  return <Row style = {styles.card_row} ><Cards key = {value.data().id_product + value.data().product_name} id_product = {index+1} product_name = {value.data().product_name} price = {value.data().price} description = {value.data().description}></Cards></Row>
                 }
               })
             }

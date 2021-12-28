@@ -43,7 +43,6 @@ const App=  () => {
         <Stack.Navigator>
           <Stack.Screen name="LogIn" component={LogIn}  />
           <Stack.Screen name="MainMenu" component={MainMenu}  />
-         
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>
