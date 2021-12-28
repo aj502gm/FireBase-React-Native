@@ -41,8 +41,8 @@ const App=  () => {
     <AuthProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="LogIn" component={LogIn} options={{ title: 'Welcome Back' }} />
-          <Stack.Screen name="MainMenu" component={MainMenu}  options={{ title: 'Home' }}/>
+          <Stack.Screen name="LogIn" component={LogIn}  />
+          <Stack.Screen name="MainMenu" component={MainMenu}  />
          
         </Stack.Navigator>
       </NavigationContainer>
@@ -60,21 +60,9 @@ const App=  () => {
 //   }
 // }
 
-// addData();
-//<Stack.Screen name="MainMenu" component={MainMenu}  options={{ title: 'Home' }}/>
-        //PANTALLA DE DETALLES PARA LOS PRODUCTOS PENDIENTES DE AGREGAR
+// addData(); <---- THIS FUNCTION ALLOW TO USE INSERT MOCK DATA INTO THE DATABASE
 
 
-//INVESTIGACION DE GRID PARA MOSTRAR ELEMENTOS
-        //ES NECESARIO INSTALAR LA DEPENDENCIA GRID LA CUAL PERMITIRÁ CONFIGURAR LAMATRIZ DE DESPLIEGUE
-        //SIN NECESIDAD DE CONFIGURAR POR MEDIO DE CSS
-/*
 
-<NavigationContainer>
-      <Stack.Navigator initialRouteName = "LogInHome">
-        <Stack.Screen name = "LogInHome" component = {LogIn}></Stack.Screen>
-      </Stack.Navigator>
-</NavigationContainer>
 
-*/
 export default App;

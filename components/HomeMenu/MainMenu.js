@@ -32,7 +32,7 @@ function MainMenu() {
           try{
               const products = await firestore().collection('Products').get();
               products.forEach(value => dataProductTemp.push(value));
-              setDataProducts(dataProductTemp);
+              setDataProducts(dataProductTemp.reverse());
           }catch(e){
             console.log(e);
           }
@@ -50,12 +50,23 @@ function MainMenu() {
     },[dataProduct])
     return (
       <Grid>
-        <Col style = {styles.back} size = {3}>
+        <Col style = {styles.back} size = {1}>
           <ScrollView>
             {
               dataProduct?.map((value,index) =>{
-                if(index){
-                  return <Row><Cards id_product = {value.data().id_product} product_name = {value.data().product_name} price = {value.data().price}></Cards></Row>
+                if(index % 2 ===  0){
+                  return <Row style = {styles.card_row}  ><Cards key = {value.data().id_product + value.data().product_name} id_product = {index+1} product_name = {value.data().product_name} price = {value.data().price}></Cards></Row>
+                }
+              })
+            }
+          </ScrollView>
+        </Col>
+        <Col style = {styles.back} size = {1}>
+          <ScrollView>
+            {
+              dataProduct?.map((value,index) =>{
+                if(index % 2 != 0){
+                  return <Row style = {styles.card_row} ><Cards key = {value.data().id_product + value.data().product_name} id_product = {index+1} product_name = {value.data().product_name} price = {value.data().price}></Cards></Row>
                 }
               })
             }
@@ -82,6 +93,10 @@ const styles = StyleSheet.create({
     },
     back:{
       backgroundColor: '#111',
+     
+    },
+    card_row:{
+      marginBottom:20,
     }
   });
 
