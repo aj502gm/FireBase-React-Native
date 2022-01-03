@@ -40,8 +40,8 @@ const App=  () => {
   return (
     <AuthProvider>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="LogIn" component={LogIn}  />
+        <Stack.Navigator screenOptions = {{headerShown: false}} >
+          <Stack.Screen name="LogIn" component={LogIn} />
           <Stack.Screen name="MainMenu" component={MainMenu}  />
         </Stack.Navigator>
       </NavigationContainer>
@@ -59,7 +59,7 @@ const App=  () => {
 //   }
 // }
 
-// addData(); <---- THIS FUNCTION ALLOW TO USE INSERT MOCK DATA INTO THE DATABASE
+// addData(); <---- THIS FUNCTION ALLOW TO USE INSERT MOCK DATA INTO THE DATABASE. DO NOT USE BUT THE FIRST TIME
 
 
 

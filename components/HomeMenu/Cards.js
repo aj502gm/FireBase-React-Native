@@ -20,8 +20,6 @@ import {
   } from 'react-native/Libraries/NewAppScreen';
 import { withOrientation } from 'react-navigation';
 
-  
-
 function Cards({id_product, product_name, price, description}) {
     const [modalVisible, setModalVisible] = useState(false);
     return (
@@ -37,14 +35,20 @@ function Cards({id_product, product_name, price, description}) {
                 <Text style={styles.modalText}>{product_name}</Text>
                 <Text style={styles.modalText}>Q{price}</Text>
                 <Text style={styles.modalText}>{description}</Text>
-                <Button title = {'Close Modal'} style={[styles.button, styles.buttonClose]} onPress={() => setModalVisible(!modalVisible)}>
-                  <Text style={styles.textStyle}>Hide Modal</Text>
-                </Button>
+                <View style={{flexDirection:"row"}}>
+                  
+                  <Button color = "#1E6738" title = {' Add to cart '} style={{flex: 1}, {padding: 50}} >
+                    
+                  </Button>
+                  <Button title = {'Go Back'} style={{flex: 1}} onPress={() => setModalVisible(!modalVisible)}>
+                  
+                  </Button>
+                </View>
               </View>
             </View>
           </Modal>
 
-          <Button style={[styles.button, styles.buttonOpen]} title = {'Details'}  onPress={() => setModalVisible(true)}>
+          <Button  style={[styles.button, styles.buttonOpen]} title = {'Details'}  onPress={() => setModalVisible(true)}>
             
           </Button>
 		    </View>
@@ -59,9 +63,8 @@ const styles = StyleSheet.create({
 		
 		padding: 0,
 		borderRadius: 2,
-		
-        
     },
+
     line:{
         
 			height: 5,
@@ -99,13 +102,15 @@ const styles = StyleSheet.create({
     button: {
       borderRadius: 20,
       padding: 10,
-      elevation: 2
+      elevation: 2,
+      
     },
-    buttonOpen: {
-      backgroundColor: "#F194FF",
-    },
+    
     buttonClose: {
       backgroundColor: "#2196F3",
+    },
+    buttonDelete: {
+      
     },
     textStyle: {
       color: "white",

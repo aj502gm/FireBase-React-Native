@@ -1,6 +1,6 @@
 
 
- import React, {useState, useContext} from 'react';
+ import React, {useState, useContext, useEffect} from 'react';
 
  import { NavigationContainer } from '@react-navigation/native';
  import auth from '@react-native-firebase/auth';
@@ -28,23 +28,27 @@
  
  
 const LogIn = ({navigation}) =>{
-  const [userName, setUserName] = useState("androsogt@gmail.com");
-  const [userPass, setUserPass] = useState("holamundo");
+  const [userName, setUserName] = useState("");
+  const [userPass, setUserPass] = useState("");
 //ENVOLVER EL APP EN EL PROVIDER
   const {login} = useContext(authContext);
 
-  const checkData = () =>{
-    if(userName != 'aj502gm' || userPass != "holamundo"){
-      Alert.alert("Error", "Datos incorrectos");
-      return;
-    }
-    navigation.navigate("MainMenu");
-  }
+  useEffect(()=>{
+    const unsuscribe = auth().onAuthStateChanged(user => {
+      if(user){
+        navigation.replace("MainMenu")
+      }
+    })
+    return unsuscribe;
+  },[])
   return (
     <View style = {styles.container}>
         <TextInput  placeholderTextColor={'#0ebeff'} style = {styles.input} value = {userName} onChangeText = {(e) => setUserName(e)} placeholder={'Hello Folk'} />
         <TextInput  placeholderTextColor={'#0ebeff'} style = {styles.input} value = {userPass} onChangeText = {(e) => setUserPass(e)} placeholder={'Is that really you?'} />
-        <Button title = {"Let's go!"} style = {styles.inputButton} onPress = {() => {if(login(userName,userPass)) navigation.navigate("MainMenu")} }/>
+        <View style = {styles.btnGroup}>
+          <Button title = {"Let's go!"} style = {styles.inputButton} onPress = {() => login(userName,userPass) }/>
+          <Button title = {"Sign up!"} style = {styles.inputButton} onPress = {() => login(userName,userPass) }/>
+        </View>
     </View>
   );
 }
@@ -57,8 +61,14 @@ const styles = StyleSheet.create({
       backgroundColor: '#28282b',
       
     },
+    btnGroup:{
+      flexDirection: "row",
+      flex: 1,
+    },
     inputButton:{
       backgroundColor: "#0ebeff",
+     padding: 5,
+     flexDirection: "row",
     },
     input: {
       width: 200,

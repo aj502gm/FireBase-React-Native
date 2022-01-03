@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react'
 import Cards from "./Cards";
 import firestore from '@react-native-firebase/firestore';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import { useNavigation } from '@react-navigation/core'
+import auth from '@react-native-firebase/auth';
+
 import {
     ScrollView,
     StyleSheet,
@@ -23,7 +26,8 @@ import {
 
   
 
-function MainMenu() {
+function MainMenu({navigation}) {
+    
     const [dataProduct, setDataProducts] = useState([]);
     let dataProductTemp = [];
     useEffect(()=>{
@@ -48,8 +52,14 @@ function MainMenu() {
       console.log("DATA:")
       console.log(dataProduct);
     },[dataProduct])
+
+    const hanldeSignOut = () =>{
+      auth().signOut().then(()=> navigation.replace("LogIn"));
+    }
     return (
+      
       <Grid>
+        <Button title = {'SALIR'} onPress= {hanldeSignOut}></Button>
         <Col style = {styles.back} size = {1}>
           <ScrollView>
             {

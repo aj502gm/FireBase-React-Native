@@ -7,7 +7,7 @@ export const AuthProvider =({children}) => {
     const [user, setUser] = useState(null);
     const login = async (email,pass)=>{
         try{
-            await auth().signInWithEmailAndPassword(email,pass);
+            await auth().signInWithEmailAndPassword(email,pass).then(userCre => console.log(userCre.user) );
 
             return true;
         }catch(e){
@@ -16,6 +16,7 @@ export const AuthProvider =({children}) => {
         }
         return false;
     }
+    
     return(
         <authContext.Provider  
             value = {{
