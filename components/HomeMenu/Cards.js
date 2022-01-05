@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {
    
     StyleSheet,
@@ -22,6 +22,9 @@ import { withOrientation } from 'react-navigation';
 
 function Cards({id_product, product_name, price, description}) {
     const [modalVisible, setModalVisible] = useState(false);
+    useEffect(() => {
+     // console.log(id_product)
+    }, [])
     return (
         <View style = {[styles.card]}>
           <Text style = {styles.fonts}>#{id_product}</Text>
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#28282b',
 		color: '#ecf0f1',
 		
-		padding: 0,
+		
 		borderRadius: 2,
     },
 

@@ -16,6 +16,17 @@ export const AuthProvider =({children}) => {
         }
         return false;
     }
+    const signUp = async (email,pass)=>{
+        try{
+            await auth().createUserWithEmailAndPassword(email,pass).then(userCre => console.log(userCre.user) );
+
+            return true;
+        }catch(e){
+            console.log(e);
+            return false;
+        }
+        return false;
+    }
     
     return(
         <authContext.Provider  
@@ -23,6 +34,7 @@ export const AuthProvider =({children}) => {
                 user,
                 setUser,
                 login,
+                signUp
                 }}
         >
            

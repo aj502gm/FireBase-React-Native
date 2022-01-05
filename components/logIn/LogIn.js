@@ -28,10 +28,10 @@
  
  
 const LogIn = ({navigation}) =>{
-  const [userName, setUserName] = useState("");
-  const [userPass, setUserPass] = useState("");
+  const [userName, setUserName] = useState("test12@gmail.com");
+  const [userPass, setUserPass] = useState("holamundo");
 //ENVOLVER EL APP EN EL PROVIDER
-  const {login} = useContext(authContext);
+  const {login, signUp} = useContext(authContext);
 
   useEffect(()=>{
     const unsuscribe = auth().onAuthStateChanged(user => {
@@ -47,7 +47,7 @@ const LogIn = ({navigation}) =>{
         <TextInput  placeholderTextColor={'#0ebeff'} style = {styles.input} value = {userPass} onChangeText = {(e) => setUserPass(e)} placeholder={'Is that really you?'} />
         <View style = {styles.btnGroup}>
           <Button title = {"Let's go!"} style = {styles.inputButton} onPress = {() => login(userName,userPass) }/>
-          <Button title = {"Sign up!"} style = {styles.inputButton} onPress = {() => login(userName,userPass) }/>
+          <Button title = {"Sign up!"} style = {styles.inputButton} onPress = {() => signUp(userName,userPass) }/>
         </View>
     </View>
   );
@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
       
     },
     btnGroup:{
-      flexDirection: "row",
-      flex: 1,
+     
+      height: 50,
     },
     inputButton:{
       backgroundColor: "#0ebeff",
-     padding: 5,
-     flexDirection: "row",
+      marginTop: 100,
+      height: 10,
     },
     input: {
       width: 200,
