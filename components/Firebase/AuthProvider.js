@@ -42,20 +42,3 @@ export const AuthProvider =({children}) => {
         </authContext.Provider>
     )
 }
-/*
-register: async (email, pass)=>{
-                    try{
-                        await auth().createUserWithEmailAndPassword(email,pass);
-                    }catch(e){
-                        console.log(e);
-                    }
-                },
-                logout: async()=>{
-                    try{
-                        await auth.signOut();
-                    }catch(e){
-                        console.log(e);
-                    }
-                }
-
-*/

@@ -14,6 +14,7 @@ import LogIn from './components/logIn/LogIn';
 import MainMenu from './components/HomeMenu/MainMenu';
 import {AuthProvider} from "./components/Firebase/AuthProvider";
 import firestore from '@react-native-firebase/firestore';
+import {CartProvider} from './components/Cart/CartProvider';
 
 const data = require('./mockData/MOCK_DATA.json'); // BACK
 
@@ -39,12 +40,14 @@ const App=  () => {
   
   return (
     <AuthProvider>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions = {{headerShown: false}} >
-          <Stack.Screen name="LogIn" component={LogIn} />
-          <Stack.Screen name="MainMenu" component={MainMenu}  />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <CartProvider>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions = {{headerShown: false}} >
+            <Stack.Screen name="LogIn" component={LogIn} />
+            <Stack.Screen name="MainMenu" component={MainMenu}  />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </CartProvider>
     </AuthProvider>
   ); 
 };
