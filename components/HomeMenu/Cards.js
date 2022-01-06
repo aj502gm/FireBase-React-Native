@@ -37,7 +37,7 @@ function Cards({id_product, product_name, price, description}) {
       cartElement.price = price;
       cartElement.amount = 1;
       
-      return getCartElementTogether;
+      return cartElement;
      
     }
 
@@ -57,7 +57,7 @@ function Cards({id_product, product_name, price, description}) {
                   <Text style={styles.modalText}>{description}</Text>
                   <View style={{ flexDirection: "row" }}>
 
-                    <Button color="#1E6738" onPress = {addToCart} title={' Add to cart '} style={{ flex: 1 }, { padding: 50 }} >
+                    <Button color="#1E6738" onPress = {()=>addToCart(getCartElementTogether())} title={' Add to cart '} style={{ flex: 1 }, { padding: 50 }} >
 
                     </Button>
                     <Button title={'Go Back'} style={{ flex: 1 }} onPress={() => setModalVisible(!modalVisible)}>
