@@ -34,7 +34,7 @@ function CardsArea() {
 
     useEffect(()=>{ //FETCH FIREBASE DATA
       try{
-        //Alert.alert('ALGOO')
+       
         async function fetchData(){
           try{
               const products = await firestore().collection('Products').get();
@@ -42,8 +42,8 @@ function CardsArea() {
              
               return dataProductTemp.sort((a,b) =>(a.id_product > b.id_product)?1:-1); //ORDER ASC
               
-          }catch(e){
-            console.log("ERROR!");
+          }catch(err){
+            console.log(err);
           }
          
         }
@@ -54,13 +54,7 @@ function CardsArea() {
       }  
     },[]);
     
-    useEffect(()=>{
-     //console.log(dataProduct);
-    }, [dataProduct])
-
-    const hanldeSignOut = () =>{
-      auth().signOut().then(()=> navigation.replace("LogIn"));
-    }
+    const hanldeSignOut = () => auth().signOut().then(()=> navigation.replace("LogIn"));
 
     return (
       

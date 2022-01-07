@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import Cards from "./Cards";
+import Cards from "../Cart/Cards";
 import firestore from '@react-native-firebase/firestore';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { useNavigation } from '@react-navigation/core'
 import { FlatGrid } from 'react-native-super-grid';
-import CardsArea from './CardsArea';
+import CardsArea from '../Cart/CardsArea';
 import auth from '@react-native-firebase/auth';
 
 import {
@@ -41,12 +41,12 @@ function MainMenu({navigation}) {
      <>
      <CardsArea></CardsArea>
      <View>
-     <TouchableOpacity style = {styles.btn2}>
-        <Text style = {{color: "white"}}>Go to cart!</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style = {styles.btn} onPress = {hanldeSignOut}>
-        <Text style = {{color: "white"}}>Log Out</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style = {styles.btn2} onPress = {()=>navigation.replace("ShoppingCart")}>
+          <Text style = {{color: "white"}}>Go to cart!</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.btn} onPress = {hanldeSignOut}>
+          <Text style = {{color: "white"}}>Log Out</Text>
+        </TouchableOpacity>
      </View>
      </>
    )
@@ -114,36 +114,4 @@ export default MainMenu;
 
 /*
 https://www.npmjs.com/package/react-native-super-grid
-
-
-      // <Grid>
-      //   <Button title = {'salir'} onPress = {hanldeSignOut}></Button>
-      //   <Col style = {styles.back} size = {1}>
-      //     <ScrollView>
-      //       {
-      //        dataProduct.map((value,index) =>{
-      //          if(index){
-                
-      //             return <Row key = {index} style = {styles.card_row}  ><Cards key = {value.data().id_product + value.data().product_name} id_product = {index+1} product_name = {value.data().product_name} price = {value.data().price} description = {value.data().description}></Cards></Row>
-      //           }
-      //         })              
-      //       }
-      //     </ScrollView>
-      //   </Col>
-      //    <Col style = {styles.back} size = {1}>
-      //     <ScrollView>
-      //       {
-      //         dataProduct.map((value,index) =>{
-      //           if(index %2 != 0){
-      //             return <Row key = {index}  style = {styles.card_row}  ><Cards key = {value.data().id_product + value.data().product_name} id_product = {index+1} product_name = {value.data().product_name} price = {value.data().price} description = {value.data().description}></Cards></Row>
-      //           }
-      //         })
-              
-      //       }
-      //     </ScrollView>
-      //   </Col>
-        
-        
-      // </Grid>
-
-*/ 
+*/

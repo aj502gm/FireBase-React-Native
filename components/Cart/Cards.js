@@ -20,8 +20,8 @@ import {
   } from 'react-native/Libraries/NewAppScreen';
 
 import { withOrientation } from 'react-navigation';
-import {CartProvider} from '../Cart/CartProvider';
-import {cartContext} from "../Cart/CartProvider";
+import {CartProvider} from './CartProvider';
+import {cartContext} from "./CartProvider";
 
 function Cards({id_product, product_name, price, description}) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -58,14 +58,14 @@ function Cards({id_product, product_name, price, description}) {
                   <View style={{ flexDirection: "row" }}>
 
                     <Button color="#1E6738" onPress = {()=>addToCart(getCartElementTogether())} title={' Add to cart '} style={{ flex: 1 }, { padding: 50 }} >
-
                     </Button>
                     <Button title={'Go Back'} style={{ flex: 1 }} onPress={() => setModalVisible(!modalVisible)}>
-
                     </Button>
                   </View>
                 </View>
+                
               </View>
+              
             </Modal>
 
             <Button style={[styles.button, styles.buttonOpen]} title={'Details'} onPress={() => setModalVisible(true)}>
@@ -81,8 +81,6 @@ const styles = StyleSheet.create({
 		minHeight: 150,
 		backgroundColor: '#28282b',
 		color: '#ecf0f1',
-		
-		
 		borderRadius: 2,
     },
 
@@ -90,8 +88,8 @@ const styles = StyleSheet.create({
         
 			height: 5,
 			marginTop: 10,
-            backgroundColor: "#0ebeff",
-            textAlign: "center"
+      backgroundColor: "#0ebeff",
+      textAlign: "center"
     },
     fonts:{
       textAlign: "center",
@@ -124,14 +122,9 @@ const styles = StyleSheet.create({
       borderRadius: 20,
       padding: 10,
       elevation: 2,
-      
     },
-    
     buttonClose: {
       backgroundColor: "#2196F3",
-    },
-    buttonDelete: {
-      
     },
     textStyle: {
       color: "white",
@@ -142,6 +135,6 @@ const styles = StyleSheet.create({
       marginBottom: 15,
       textAlign: "center"
     }
-})
+});
 
-export default Cards
+export default Cards;
