@@ -1,4 +1,4 @@
-import React, {useState, useEffect,useContext} from 'react'
+import React, {useState,useContext} from 'react'
 import {
    
     StyleSheet,
@@ -29,6 +29,7 @@ import auth from '@react-native-firebase/auth';
 
 function ShoppingCart({navigation}) {
     const {cartList} = useContext(cartContext);
+    
     const handleSignOut = () =>{
       try{
         auth().signOut().then(()=> navigation.replace("LogIn"));
@@ -40,9 +41,12 @@ function ShoppingCart({navigation}) {
       <>
         <ScrollView style = {styles.container}>
           {
-            cartList?.map(value =>  <CartElement title = {value.product_name} amount = {value.amount} price = {value.price}></CartElement>)
+            cartList?.map(value =>  <CartElement title = {value.product_name} amount = {value.amount} price = {value.price} ></CartElement>)
           }
-          
+          <TouchableOpacity style = {styles3.btnSpec} onPress = {()=> handleSignOut()}>
+            <Text style = {{color: "white"}}>Confirm Payment</Text>
+          </TouchableOpacity>
+
         </ScrollView>
         <View>
         <TouchableOpacity style = {styles3.btn2} onPress = {()=>navigation.replace("MainMenu")}>
@@ -88,7 +92,9 @@ btn:{
   padding: 10,
   alignItems: 'center',
   backgroundColor: "red",
+  marginBottom: 15,
 },
+
 btn2:{
   padding: 10,
   alignItems: 'center',
@@ -108,6 +114,11 @@ const styles3 = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: "#1E6738",
   },
-
+  btnSpec:{
+    padding: 10,
+    alignItems: 'center',
+    backgroundColor: "green",
+    marginBottom: 25,
+  },
 })
 export default ShoppingCart

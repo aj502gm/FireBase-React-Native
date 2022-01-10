@@ -1,20 +1,25 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, YellowBox } from 'react-native'
+import React, {useState, useEffect} from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, YellowBox, Alert } from 'react-native'
 
 const CartElement = ({title, price, amount}) => {
+    const [amountState, setAmountState] = useState(amount);
+    useEffect(() => {
+       
+        console.log(amountState);
+    }, [])
     return (
-        <View style = {styles.container}>
+        <View style = {styles.container} >
             <View style = {styles.element}>
                 <View style = {styles.leftSideCart}>
                     <Text style = {styles.cartTitle}>{title}</Text>
                     <Text  style = {styles.cartTitle}>{price}</Text>
                 </View>
                 <View style = {styles.RightSideCart}> 
-                    <TouchableOpacity style = {styles.cartBtn}>
-                        <Text style = {{color: "white"}}>+</Text>
+                    <TouchableOpacity style = {styles.cartBtn} onPress = {()=>setAmountState(amountState+1)}>
+                        <Text style = {{color: "white"}} >+</Text>
                     </TouchableOpacity>
-                    <Text style = {styles.cartElementText}>{amount}</Text>
-                    <TouchableOpacity  style = {styles.cartBtn}>
+                    <Text style = {styles.cartElementText}>{amountState}</Text>
+                    <TouchableOpacity  style = {styles.cartBtn} onPress = {()=>setAmountState(amountState-1)}>
                         <Text style = {{color: "white"}}>-</Text>
                     </TouchableOpacity>
                 </View>
@@ -32,9 +37,10 @@ const styles = StyleSheet.create({
        padding: 5,
        marginBottom: 20,
        maxHeight: 200,
+      
    },
    leftSideCart:{
-       backgroundColor:"yellow",
+       
        justifyContent: "center",
       
        
@@ -46,7 +52,8 @@ const styles = StyleSheet.create({
    RightSideCart:{
        flexDirection: "row",
        flexDirection: 'row-reverse',
-       backgroundColor: "red",
+       borderTopColor: "#0ebeff",
+       borderTopWidth: 3,
        height: "50%",
        width:"100%",
        justifyContent: "center",
@@ -66,9 +73,11 @@ const styles = StyleSheet.create({
        marginRight: 10,
        marginTop: "2%",
        fontSize: 25,
+       color: "white",
    },
    cartTitle:{
        padding: 10,
+       color: "white",
    }
 });
 const styles3 = StyleSheet.create({
