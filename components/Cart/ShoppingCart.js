@@ -41,7 +41,7 @@ function ShoppingCart({navigation}) {
       <>
         <ScrollView style = {styles.container}>
           {
-            cartList?.map(value =>  <CartElement title = {value.product_name} amount = {value.amount} price = {value.price} ></CartElement>)
+            cartList?.map((value,index) =>  <CartElement position = {index} title = {value.product_name} amount = {value.amount} price = {value.price} ></CartElement>)
           }
           <TouchableOpacity style = {styles3.btnSpec} onPress = {()=> handleSignOut()}>
             <Text style = {{color: "white"}}>Confirm Payment</Text>

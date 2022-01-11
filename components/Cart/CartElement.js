@@ -1,8 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, YellowBox, Alert } from 'react-native'
+import {cartContext} from "./CartProvider";
 
-const CartElement = ({title, price, amount}) => {
+
+const CartElement = ({title, price, amount, position}) => {
     const [amountState, setAmountState] = useState(amount);
+    const {handleUpdatesCartList} = useContext(cartContext);
     useEffect(() => {
        
         console.log(amountState);
@@ -15,11 +18,11 @@ const CartElement = ({title, price, amount}) => {
                     <Text  style = {styles.cartTitle}>{price}</Text>
                 </View>
                 <View style = {styles.RightSideCart}> 
-                    <TouchableOpacity style = {styles.cartBtn} onPress = {()=>setAmountState(amountState+1)}>
+                    <TouchableOpacity style = {styles.cartBtn} onPress = {()=>handleUpdatesCartList(position, "INCREASE")}>
                         <Text style = {{color: "white"}} >+</Text>
                     </TouchableOpacity>
                     <Text style = {styles.cartElementText}>{amountState}</Text>
-                    <TouchableOpacity  style = {styles.cartBtn} onPress = {()=>setAmountState(amountState-1)}>
+                    <TouchableOpacity  style = {styles.cartBtn} onPress = {()=>handleUpdatesCartList(position, "DECREASE")}>
                         <Text style = {{color: "white"}}>-</Text>
                     </TouchableOpacity>
                 </View>
