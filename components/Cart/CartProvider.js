@@ -35,6 +35,7 @@ export const CartProvider = ({children})=> {
         cartList?.forEach((value,index) => {
             balance += value.amount * value.price;
        });
+       console.log(cartList);
        console.log("Total: " + balance);
        setToPay(balance);
    }
@@ -53,7 +54,7 @@ export const CartProvider = ({children})=> {
    
 
     return (
-        <cartContext.Provider value = {{toPay, addToCart, cartList}}>
+        <cartContext.Provider value = {{toPay, addToCart, cartList, handleUpdatesCartList}}>
             {children}
         </cartContext.Provider>
     )
